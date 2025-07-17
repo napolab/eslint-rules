@@ -4,20 +4,20 @@ import { describe, it } from "vitest";
 import { rule } from "./index";
 
 const ruleTester = new RuleTester({
-	languageOptions: {
-		parserOptions: {
-			ecmaVersion: "latest",
-			sourceType: "module",
-		},
-	},
+  languageOptions: {
+    parserOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+    },
+  },
 });
 
 describe("no-child-selectors", () => {
-	it("should allow complex pseudo-selectors", () => {
-		ruleTester.run("no-child-selectors", rule, {
-			valid: [
-				{
-					code: `
+  it("should allow complex pseudo-selectors", () => {
+    ruleTester.run("no-child-selectors", rule, {
+      valid: [
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const complexPseudos = style({
@@ -60,12 +60,12 @@ describe("no-child-selectors", () => {
               },
             });
           `,
-					filename: "/components/test/styles.css.ts",
-				},
-			],
-			invalid: [
-				{
-					code: `
+          filename: "/components/test/styles.css.ts",
+        },
+      ],
+      invalid: [
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const shouldFail = style({
@@ -75,27 +75,27 @@ describe("no-child-selectors", () => {
               },
             });
           `,
-					filename: "/components/test/styles.css.ts",
-					errors: [
-						{
-							message:
-								"Child selector '& h3' is not allowed in Vanilla Extract. Create a separate style export instead.",
-						},
-						{
-							message:
-								"Child selector '& .child-class' is not allowed in Vanilla Extract. Create a separate style export instead.",
-						},
-					],
-				},
-			],
-		});
-	});
+          filename: "/components/test/styles.css.ts",
+          errors: [
+            {
+              message:
+                "Child selector '& h3' is not allowed in Vanilla Extract. Create a separate style export instead.",
+            },
+            {
+              message:
+                "Child selector '& .child-class' is not allowed in Vanilla Extract. Create a separate style export instead.",
+            },
+          ],
+        },
+      ],
+    });
+  });
 
-	it("should forbid child selectors in Vanilla Extract style definitions", () => {
-		ruleTester.run("no-child-selectors", rule, {
-			valid: [
-				{
-					code: `
+  it("should forbid child selectors in Vanilla Extract style definitions", () => {
+    ruleTester.run("no-child-selectors", rule, {
+      valid: [
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const button = style({
@@ -106,10 +106,10 @@ describe("no-child-selectors", () => {
               },
             });
           `,
-					filename: "/components/button/styles.css.ts",
-				},
-				{
-					code: `
+          filename: "/components/button/styles.css.ts",
+        },
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const card = style({
@@ -128,10 +128,10 @@ describe("no-child-selectors", () => {
               lineHeight: 1.6,
             });
           `,
-					filename: "/components/card/styles.css.ts",
-				},
-				{
-					code: `
+          filename: "/components/card/styles.css.ts",
+        },
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const input = style({
@@ -143,10 +143,10 @@ describe("no-child-selectors", () => {
               },
             });
           `,
-					filename: "/components/form/styles.css.ts",
-				},
-				{
-					code: `
+          filename: "/components/form/styles.css.ts",
+        },
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const listItem = style({
@@ -162,23 +162,23 @@ describe("no-child-selectors", () => {
               },
             });
           `,
-					filename: "/components/list/styles.css.ts",
-				},
-				// Non-css.ts files should not be checked
-				{
-					code: `
+          filename: "/components/list/styles.css.ts",
+        },
+        // Non-css.ts files should not be checked
+        {
+          code: `
             const styles = {
               selectors: {
                 "& h3": { fontSize: "1.5rem" },
               }
             };
           `,
-					filename: "/components/card/index.tsx",
-				},
-			],
-			invalid: [
-				{
-					code: `
+          filename: "/components/card/index.tsx",
+        },
+      ],
+      invalid: [
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const card = style({
@@ -187,16 +187,16 @@ describe("no-child-selectors", () => {
               },
             });
           `,
-					filename: "/components/card/styles.css.ts",
-					errors: [
-						{
-							message:
-								"Child selector '& h3' is not allowed in Vanilla Extract. Create a separate style export instead.",
-						},
-					],
-				},
-				{
-					code: `
+          filename: "/components/card/styles.css.ts",
+          errors: [
+            {
+              message:
+                "Child selector '& h3' is not allowed in Vanilla Extract. Create a separate style export instead.",
+            },
+          ],
+        },
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const container = style({
@@ -206,16 +206,16 @@ describe("no-child-selectors", () => {
               },
             });
           `,
-					filename: "/components/container/styles.css.ts",
-					errors: [
-						{
-							message:
-								"Child selector '& p' is not allowed in Vanilla Extract. Create a separate style export instead.",
-						},
-					],
-				},
-				{
-					code: `
+          filename: "/components/container/styles.css.ts",
+          errors: [
+            {
+              message:
+                "Child selector '& p' is not allowed in Vanilla Extract. Create a separate style export instead.",
+            },
+          ],
+        },
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const list = style({
@@ -224,16 +224,16 @@ describe("no-child-selectors", () => {
               },
             });
           `,
-					filename: "/components/list/styles.css.ts",
-					errors: [
-						{
-							message:
-								"Child selector '& .child-class' is not allowed in Vanilla Extract. Create a separate style export instead.",
-						},
-					],
-				},
-				{
-					code: `
+          filename: "/components/list/styles.css.ts",
+          errors: [
+            {
+              message:
+                "Child selector '& .child-class' is not allowed in Vanilla Extract. Create a separate style export instead.",
+            },
+          ],
+        },
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const nav = style({
@@ -244,20 +244,20 @@ describe("no-child-selectors", () => {
               },
             });
           `,
-					filename: "/components/nav/styles.css.ts",
-					errors: [
-						{
-							message:
-								"Child selector '& > li' is not allowed in Vanilla Extract. Create a separate style export instead.",
-						},
-						{
-							message:
-								"Child selector '& a' is not allowed in Vanilla Extract. Create a separate style export instead.",
-						},
-					],
-				},
-				{
-					code: `
+          filename: "/components/nav/styles.css.ts",
+          errors: [
+            {
+              message:
+                "Child selector '& > li' is not allowed in Vanilla Extract. Create a separate style export instead.",
+            },
+            {
+              message:
+                "Child selector '& a' is not allowed in Vanilla Extract. Create a separate style export instead.",
+            },
+          ],
+        },
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const article = style({
@@ -267,20 +267,20 @@ describe("no-child-selectors", () => {
               },
             });
           `,
-					filename: "/components/article/styles.css.ts",
-					errors: [
-						{
-							message:
-								"Child selector '& h1, & h2' is not allowed in Vanilla Extract. Create a separate style export instead.",
-						},
-						{
-							message:
-								"Child selector '& p + p' is not allowed in Vanilla Extract. Create a separate style export instead.",
-						},
-					],
-				},
-				{
-					code: `
+          filename: "/components/article/styles.css.ts",
+          errors: [
+            {
+              message:
+                "Child selector '& h1, & h2' is not allowed in Vanilla Extract. Create a separate style export instead.",
+            },
+            {
+              message:
+                "Child selector '& p + p' is not allowed in Vanilla Extract. Create a separate style export instead.",
+            },
+          ],
+        },
+        {
+          code: `
             import { style } from "@vanilla-extract/css";
             
             export const form = style({
@@ -290,19 +290,19 @@ describe("no-child-selectors", () => {
               },
             });
           `,
-					filename: "/components/form/styles.css.ts",
-					errors: [
-						{
-							message:
-								"Child selector '& input[type='text']' is not allowed in Vanilla Extract. Create a separate style export instead.",
-						},
-						{
-							message:
-								"Child selector '& *' is not allowed in Vanilla Extract. Create a separate style export instead.",
-						},
-					],
-				},
-			],
-		});
-	});
+          filename: "/components/form/styles.css.ts",
+          errors: [
+            {
+              message:
+                "Child selector '& input[type='text']' is not allowed in Vanilla Extract. Create a separate style export instead.",
+            },
+            {
+              message:
+                "Child selector '& *' is not allowed in Vanilla Extract. Create a separate style export instead.",
+            },
+          ],
+        },
+      ],
+    });
+  });
 });
