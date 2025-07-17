@@ -1,0 +1,48 @@
+{
+  "name": "@napolab/eslint-plugin",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "npm-run-all -p lint:eslint lint:prettier",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier --check .",
+    "fmt": "npm-run-all -s fmt:prettier fmt:eslint",
+    "fmt:eslint": "eslint . --fix",
+    "fmt:prettier": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/eslint": "^9.6.1",
+    "@types/node": "^22.10.5",
+    "@vitest/eslint-plugin": "^1.2.5",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^4.4.3",
+    "eslint-plugin-import-x": "^4.15.2",
+    "eslint-plugin-unicorn": "^59.0.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^15.15.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.4.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.36.0",
+    "vitest": "^2.1.8"
+  },
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "unrs-resolver"
+    ]
+  }
+}
