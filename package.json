@@ -16,7 +16,8 @@
     "lint:prettier": "prettier --check .",
     "fmt": "npm-run-all -s fmt:prettier fmt:eslint",
     "fmt:eslint": "eslint . --fix",
-    "fmt:prettier": "prettier --write ."
+    "fmt:prettier": "prettier --write .",
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
