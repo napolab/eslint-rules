@@ -1,5 +1,11 @@
 # @napolab/eslint-plugin
 
+## 0.0.4
+
+### Patch Changes
+
+- f1b3406: chore: remove private field
+
 ## 0.0.3
 
 ### Patch Changes
