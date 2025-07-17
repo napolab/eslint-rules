@@ -32,6 +32,7 @@ export default [
       "@napolab/max-style-name-words": "error",
       "@napolab/enforce-layout-component-name": "error",
       "@napolab/enforce-page-component-name": "error",
+      "@napolab/prefer-array-at": "error",
     },
   },
 ];
@@ -47,6 +48,12 @@ export default [
 | [no-container-wrapper-names](./docs/rules/no-container-wrapper-names.md) | Forbid generic container/wrapper names in `*.css.ts` files                     | ✅  |
 | [no-child-selectors](./docs/rules/no-child-selectors.md)                 | Forbid child selectors in Vanilla Extract style definitions                    | ✅  |
 | [max-style-name-words](./docs/rules/max-style-name-words.md)             | Enforce maximum word count in style names to encourage component decomposition | ✅  |
+
+### Code Quality Rules
+
+| Rule                                               | Description                                                                         | TDD |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------- | --- |
+| [prefer-array-at](./docs/rules/prefer-array-at.md) | Enforce using .at() method instead of array bracket notation for accessing elements | ✅  |
 
 ### Component Naming Rules
 
