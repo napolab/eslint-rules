@@ -1,6 +1,6 @@
 {
   "name": "@napolab/eslint-plugin",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "type": "module",
   "main": "./dist/index.js",
@@ -19,8 +19,10 @@
     "fmt:prettier": "prettier --write ."
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.5",
     "@eslint/js": "^9.17.0",
     "@types/eslint": "^9.6.1",
+    "@types/estree": "^1.0.8",
     "@types/node": "^22.10.5",
     "@vitest/eslint-plugin": "^1.2.5",
     "eslint": "^9.29.0",
@@ -44,5 +46,8 @@
     "onlyBuiltDependencies": [
       "unrs-resolver"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
