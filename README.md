@@ -21,19 +21,19 @@ Add the plugin to your ESLint configuration:
 import napolabPlugin from "@napolab/eslint-plugin";
 
 export default [
-	{
-		plugins: {
-			"@napolab": napolabPlugin,
-		},
-		rules: {
-			"@napolab/enforce-styling": "error",
-			"@napolab/no-container-wrapper-names": "error",
-			"@napolab/no-child-selectors": "error",
-			"@napolab/max-style-name-words": "error",
-			"@napolab/enforce-layout-component-name": "error",
-			"@napolab/enforce-page-component-name": "error",
-		},
-	},
+  {
+    plugins: {
+      "@napolab": napolabPlugin,
+    },
+    rules: {
+      "@napolab/enforce-styling": "error",
+      "@napolab/no-container-wrapper-names": "error",
+      "@napolab/no-child-selectors": "error",
+      "@napolab/max-style-name-words": "error",
+      "@napolab/enforce-layout-component-name": "error",
+      "@napolab/enforce-page-component-name": "error",
+    },
+  },
 ];
 ```
 

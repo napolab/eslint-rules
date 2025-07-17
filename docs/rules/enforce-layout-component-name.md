@@ -13,21 +13,21 @@ This rule checks that `layout.tsx` files used in Next.js App Router export a Rea
 ```tsx
 // Wrong component name
 export default function RootLayout({ children }) {
-	return <div>{children}</div>;
+  return <div>{children}</div>;
 }
 ```
 
 ```tsx
 // Wrong component name in named export
 export function MyLayout({ children }) {
-	return <div>{children}</div>;
+  return <div>{children}</div>;
 }
 ```
 
 ```tsx
 // Wrong component name with arrow function
 const AppLayout = ({ children }) => {
-	return <div>{children}</div>;
+  return <div>{children}</div>;
 };
 export default AppLayout;
 ```
@@ -48,21 +48,21 @@ export { someUtility };
 ```tsx
 // Default export with function declaration
 export default function Layout({ children }) {
-	return <div>{children}</div>;
+  return <div>{children}</div>;
 }
 ```
 
 ```tsx
 // Named export
 export function Layout({ children }) {
-	return <div>{children}</div>;
+  return <div>{children}</div>;
 }
 ```
 
 ```tsx
 // Arrow function with default export
 const Layout = ({ children }) => {
-	return <div>{children}</div>;
+  return <div>{children}</div>;
 };
 export default Layout;
 ```
@@ -70,14 +70,14 @@ export default Layout;
 ```tsx
 // Arrow function with named export
 export const Layout = ({ children }) => {
-	return <div>{children}</div>;
+  return <div>{children}</div>;
 };
 ```
 
 ```tsx
 // Export specifier
 function Layout({ children }) {
-	return <div>{children}</div>;
+  return <div>{children}</div>;
 }
 export { Layout };
 ```

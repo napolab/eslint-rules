@@ -22,32 +22,32 @@ The word count threshold is configurable via the `maxWords` option (default: 3).
 ```typescript
 // styles.css.ts with complex naming indicates oversized component
 export const messageWallTitle = style({
-	fontSize: "1.5rem",
+  fontSize: "1.5rem",
 });
 
 export const messageWallContainer = style({
-	padding: "1rem",
+  padding: "1rem",
 });
 
 export const messageWallItemIcon = style({
-	width: "24px",
+  width: "24px",
 });
 
 export const messageWallItemText = style({
-	color: "#333",
+  color: "#333",
 });
 
 export const messageWallItemTimestamp = style({
-	fontSize: "0.8rem",
+  fontSize: "0.8rem",
 });
 
 // Even more complex names
 export const userProfileCardHeaderTitle = style({
-	fontWeight: "bold",
+  fontWeight: "bold",
 });
 
 export const navigationMenuItemIconWrapper = style({
-	display: "inline-flex",
+  display: "inline-flex",
 });
 ```
 
@@ -56,24 +56,24 @@ export const navigationMenuItemIconWrapper = style({
 ```typescript
 // Each component has simple, focused style names
 export const root = style({
-	padding: "1rem",
+  padding: "1rem",
 });
 
 export const title = style({
-	fontSize: "2rem",
+  fontSize: "2rem",
 });
 
 // Two-word names are acceptable
 export const submitButton = style({
-	backgroundColor: "blue",
+  backgroundColor: "blue",
 });
 
 export const headerRoot = style({
-	display: "flex",
+  display: "flex",
 });
 
 export const darkTheme = style({
-	background: "#000",
+  background: "#000",
 });
 ```
 
@@ -111,38 +111,38 @@ components/message-form/
 ```typescript
 // components/message-form/styles.css.ts
 export const root = style({
-	/* ... */
+  /* ... */
 });
 export const form = style({
-	/* ... */
+  /* ... */
 });
 export const input = style({
-	/* ... */
+  /* ... */
 });
 
 // components/message-form/message-wall/styles.css.ts
 export const root = style({
-	/* ... */
+  /* ... */
 });
 export const title = style({
-	/* ... */
+  /* ... */
 });
 export const list = style({
-	/* ... */
+  /* ... */
 });
 
 // components/message-form/message-item/styles.css.ts
 export const root = style({
-	/* ... */
+  /* ... */
 });
 export const icon = style({
-	/* ... */
+  /* ... */
 });
 export const text = style({
-	/* ... */
+  /* ... */
 });
 export const timestamp = style({
-	/* ... */
+  /* ... */
 });
 ```
 
@@ -156,15 +156,15 @@ This rule accepts an options object with the following properties:
 
 ```json
 {
-	"type": "object",
-	"properties": {
-		"maxWords": {
-			"type": "integer",
-			"minimum": 1,
-			"default": 3
-		}
-	},
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "maxWords": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 3
+    }
+  },
+  "additionalProperties": false
 }
 ```
 
@@ -174,9 +174,9 @@ This rule accepts an options object with the following properties:
 
 ```json
 {
-	"rules": {
-		"@/max-style-name-words": "error"
-	}
+  "rules": {
+    "@/max-style-name-words": "error"
+  }
 }
 ```
 
@@ -186,9 +186,9 @@ This will flag style names with 3 or more words.
 
 ```json
 {
-	"rules": {
-		"@/max-style-name-words": ["error", { "maxWords": 4 }]
-	}
+  "rules": {
+    "@/max-style-name-words": ["error", { "maxWords": 4 }]
+  }
 }
 ```
 
@@ -198,9 +198,9 @@ This will flag style names with 4 or more words.
 
 ```json
 {
-	"rules": {
-		"@/max-style-name-words": ["error", { "maxWords": 2 }]
-	}
+  "rules": {
+    "@/max-style-name-words": ["error", { "maxWords": 2 }]
+  }
 }
 ```
 
@@ -213,16 +213,16 @@ This will flag style names with 2 or more words, enforcing very strict component
 ```typescript
 // ✅ Valid - 3 words are allowed
 export const messageWallTitle = style({
-	fontSize: "1.5rem",
+  fontSize: "1.5rem",
 });
 
 export const messageWallContainer = style({
-	padding: "1rem",
+  padding: "1rem",
 });
 
 // ❌ Invalid - 4 words trigger warning
 export const messageWallItemIcon = style({
-	width: "24px",
+  width: "24px",
 });
 ```
 
@@ -231,12 +231,12 @@ export const messageWallItemIcon = style({
 ```typescript
 // ✅ Valid - single word
 export const root = style({
-	padding: "1rem",
+  padding: "1rem",
 });
 
 // ❌ Invalid - 2 words trigger warning
 export const submitButton = style({
-	backgroundColor: "blue",
+  backgroundColor: "blue",
 });
 ```
 

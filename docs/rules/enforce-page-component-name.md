@@ -13,21 +13,21 @@ This rule checks that `page.tsx` files used in Next.js App Router export a React
 ```tsx
 // Wrong component name
 export default function HomePage() {
-	return <div>Hello</div>;
+  return <div>Hello</div>;
 }
 ```
 
 ```tsx
 // Wrong component name in named export
 export function MyPage() {
-	return <div>Hello</div>;
+  return <div>Hello</div>;
 }
 ```
 
 ```tsx
 // Wrong component name with arrow function
 const DashboardPage = () => {
-	return <div>Hello</div>;
+  return <div>Hello</div>;
 };
 export default DashboardPage;
 ```
@@ -48,21 +48,21 @@ export { someUtility };
 ```tsx
 // Default export with function declaration
 export default function Page() {
-	return <div>Hello</div>;
+  return <div>Hello</div>;
 }
 ```
 
 ```tsx
 // Named export
 export function Page() {
-	return <div>Hello</div>;
+  return <div>Hello</div>;
 }
 ```
 
 ```tsx
 // Arrow function with default export
 const Page = () => {
-	return <div>Hello</div>;
+  return <div>Hello</div>;
 };
 export default Page;
 ```
@@ -70,14 +70,14 @@ export default Page;
 ```tsx
 // Arrow function with named export
 export const Page = () => {
-	return <div>Hello</div>;
+  return <div>Hello</div>;
 };
 ```
 
 ```tsx
 // Export specifier
 function Page() {
-	return <div>Hello</div>;
+  return <div>Hello</div>;
 }
 export { Page };
 ```

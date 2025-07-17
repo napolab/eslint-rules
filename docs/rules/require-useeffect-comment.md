@@ -17,15 +17,15 @@ Based on the project's coding conventions, `useEffect` should only be used for a
 ```typescript
 // useEffect with required comment
 useEffect(() => {
-	// REQUIRED COMMENT: Setting up WebSocket connection for real-time updates
-	const socket = new WebSocket(url);
-	return () => socket.close();
+  // REQUIRED COMMENT: Setting up WebSocket connection for real-time updates
+  const socket = new WebSocket(url);
+  return () => socket.close();
 }, []);
 
 // useEffect with proper comment explaining necessity
 useEffect(() => {
-	// This is needed for DOM manipulation that cannot be achieved through React patterns
-	document.title = "New Title";
+  // This is needed for DOM manipulation that cannot be achieved through React patterns
+  document.title = "New Title";
 }, []);
 ```
 
@@ -34,22 +34,22 @@ useEffect(() => {
 ```typescript
 // useEffect without comment
 useEffect(() => {
-	const socket = new WebSocket(url);
-	return () => socket.close();
+  const socket = new WebSocket(url);
+  return () => socket.close();
 }, []);
 
 // useEffect with empty comment
 useEffect(() => {
-	//
-	const socket = new WebSocket(url);
-	return () => socket.close();
+  //
+  const socket = new WebSocket(url);
+  return () => socket.close();
 }, []);
 
 // useEffect with insufficient comment
 useEffect(() => {
-	// setup
-	const socket = new WebSocket(url);
-	return () => socket.close();
+  // setup
+  const socket = new WebSocket(url);
+  return () => socket.close();
 }, []);
 ```
 
@@ -70,7 +70,7 @@ useEffect(() => {
 ```typescript
 // ❌ Don't use useEffect for state initialization
 useEffect(() => {
-	setData(calculateInitialData());
+  setData(calculateInitialData());
 }, []);
 
 // ✅ Use useState with lazy initialization
@@ -78,7 +78,7 @@ const [data] = useState(() => calculateInitialData());
 
 // ❌ Don't use useEffect for derived state
 useEffect(() => {
-	setFilteredItems(items.filter((item) => item.active));
+  setFilteredItems(items.filter((item) => item.active));
 }, [items]);
 
 // ✅ Use useMemo or direct calculation

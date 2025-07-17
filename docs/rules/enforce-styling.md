@@ -10,15 +10,15 @@ This rule enforces that component files (page.tsx, layout.tsx, component index.t
 
 ```typescript
 interface StylePattern {
-	componentDescription: string;
-	expectedImport: string;
-	styleFileExtension: string;
-	requireRelativeImports?: boolean;
+  componentDescription: string;
+  expectedImport: string;
+  styleFileExtension: string;
+  requireRelativeImports?: boolean;
 }
 
 interface RuleOptions {
-	patterns: StylePattern[];
-	requireWhenStylesExist?: boolean;
+  patterns: StylePattern[];
+  requireWhenStylesExist?: boolean;
 }
 ```
 

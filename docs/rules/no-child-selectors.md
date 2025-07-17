@@ -15,36 +15,36 @@ import { style } from "@vanilla-extract/css";
 
 // Don't use child selectors in selectors object
 export const card = style({
-	selectors: {
-		"& h3": { fontSize: "1.5rem" }, // ERROR: Invalid selector
-		"& p": { color: "#333" }, // ERROR: Invalid selector
-		"& .child-class": { margin: "1rem" }, // ERROR: Invalid selector
-	},
+  selectors: {
+    "& h3": { fontSize: "1.5rem" }, // ERROR: Invalid selector
+    "& p": { color: "#333" }, // ERROR: Invalid selector
+    "& .child-class": { margin: "1rem" }, // ERROR: Invalid selector
+  },
 });
 
 // Multiple child selectors
 export const nav = style({
-	selectors: {
-		"& > li": { display: "inline-block" }, // ERROR: Direct child selector
-		"& a": { textDecoration: "none" }, // ERROR: Descendant selector
-		"&:hover": { background: "#eee" }, // OK: Pseudo-selector
-	},
+  selectors: {
+    "& > li": { display: "inline-block" }, // ERROR: Direct child selector
+    "& a": { textDecoration: "none" }, // ERROR: Descendant selector
+    "&:hover": { background: "#eee" }, // OK: Pseudo-selector
+  },
 });
 
 // Complex selectors
 export const article = style({
-	selectors: {
-		"& h1, & h2": { fontWeight: "bold" }, // ERROR: Multiple element selectors
-		"& p + p": { marginTop: "1rem" }, // ERROR: Adjacent sibling selector
-	},
+  selectors: {
+    "& h1, & h2": { fontWeight: "bold" }, // ERROR: Multiple element selectors
+    "& p + p": { marginTop: "1rem" }, // ERROR: Adjacent sibling selector
+  },
 });
 
 // Attribute selectors on child elements
 export const form = style({
-	selectors: {
-		"& input[type='text']": { border: "1px solid #ccc" }, // ERROR: Child element with attribute
-		"& *": { boxSizing: "border-box" }, // ERROR: Universal selector
-	},
+  selectors: {
+    "& input[type='text']": { border: "1px solid #ccc" }, // ERROR: Child element with attribute
+    "& *": { boxSizing: "border-box" }, // ERROR: Universal selector
+  },
 });
 ```
 
@@ -55,30 +55,30 @@ import { style } from "@vanilla-extract/css";
 
 // Create separate styles for each element
 export const card = style({
-	padding: "1rem",
-	background: "white",
+  padding: "1rem",
+  background: "white",
 });
 
 export const cardTitle = style({
-	fontSize: "1.5rem",
-	color: "#333",
-	marginBottom: "1rem",
+  fontSize: "1.5rem",
+  color: "#333",
+  marginBottom: "1rem",
 });
 
 export const cardText = style({
-	color: "#666",
-	lineHeight: 1.6,
+  color: "#666",
+  lineHeight: 1.6,
 });
 
 // Allowed selectors (pseudo-selectors and attribute selectors on the element itself)
 export const button = style({
-	selectors: {
-		"&:hover": { backgroundColor: "#blue" }, // ✅ Pseudo-selectors OK
-		"&:focus": { outline: "2px solid #blue" }, // ✅ Pseudo-selectors OK
-		"&[disabled]": { opacity: 0.5 }, // ✅ Attribute selectors OK
-		"&:nth-child(2)": { marginTop: "1rem" }, // ✅ Structural pseudo-selectors OK
-		"&::placeholder": { color: "#999" }, // ✅ Pseudo-elements OK
-	},
+  selectors: {
+    "&:hover": { backgroundColor: "#blue" }, // ✅ Pseudo-selectors OK
+    "&:focus": { outline: "2px solid #blue" }, // ✅ Pseudo-selectors OK
+    "&[disabled]": { opacity: 0.5 }, // ✅ Attribute selectors OK
+    "&:nth-child(2)": { marginTop: "1rem" }, // ✅ Structural pseudo-selectors OK
+    "&::placeholder": { color: "#999" }, // ✅ Pseudo-elements OK
+  },
 });
 ```
 
@@ -89,10 +89,10 @@ export const button = style({
 import * as styles from "./styles.css";
 
 export const Card = ({ title, content }) => (
-	<div className={styles.card}>
-		<h3 className={styles.cardTitle}>{title}</h3>
-		<p className={styles.cardText}>{content}</p>
-	</div>
+  <div className={styles.card}>
+    <h3 className={styles.cardTitle}>{title}</h3>
+    <p className={styles.cardText}>{content}</p>
+  </div>
 );
 ```
 
