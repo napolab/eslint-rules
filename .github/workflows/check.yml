@@ -78,7 +78,7 @@ jobs:
         run: pnpm run build
 
       - name: Publint
-        run: pnpm run publint
+        run: pnpm exec publint
 
   test:
     runs-on: ubuntu-latest
