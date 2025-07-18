@@ -1,5 +1,11 @@
 # @napolab/eslint-plugin
 
+## 0.1.0
+
+### Minor Changes
+
+- 29c9adf: Improve package.json configuration and build setup
+
 ## 0.0.4
 
 ### Patch Changes

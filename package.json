@@ -1,6 +1,6 @@
 {
   "name": "@napolab/eslint-plugin",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "license": "MIT",
   "packageManager": "pnpm@10.11.0",
   "type": "module",
