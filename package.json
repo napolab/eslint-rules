@@ -2,6 +2,7 @@
   "name": "@napolab/eslint-plugin",
   "version": "0.0.4",
   "license": "MIT",
+  "packageManager": "pnpm@10.11.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
