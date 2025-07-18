@@ -52,7 +52,9 @@ jobs:
         run: pnpm i
 
       - name: Lint
-        run: pnpm run lint
+        run: |
+          pnpm run build
+          pnpm run lint
 
   publint:
     runs-on: ubuntu-latest
@@ -76,7 +78,7 @@ jobs:
         run: pnpm run build
 
       - name: Publint
-        run: pnpm run publint
+        run: pnpm exec publint
 
   test:
     runs-on: ubuntu-latest
