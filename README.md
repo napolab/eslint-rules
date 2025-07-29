@@ -5,12 +5,17 @@ ESLint plugin for enforcing styling conventions in Next.js + Vanilla Extract pro
 ## Installation
 
 ```bash
-npm install --save-dev @napolab/eslint-plugin
+npm install --save-dev @napolab/eslint-plugin typescript
 # or
-pnpm add -D @napolab/eslint-plugin
+pnpm add -D @napolab/eslint-plugin typescript
 # or
-yarn add -D @napolab/eslint-plugin
+yarn add -D @napolab/eslint-plugin typescript
 ```
+
+### Requirements
+
+- ESLint >= 8.0.0
+- TypeScript >= 4.0.0
 
 ## Usage
 
