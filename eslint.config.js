@@ -120,7 +120,7 @@ const config = [
       "unicorn/prefer-node-protocol": "error",
       "unicorn/filename-case": ["error", { case: "kebabCase" }],
       "unicorn/better-regex": "error",
-      "custom-rules/require-useeffect-comment": "error",
+      "custom-rules/require-useeffect-comment": "error", // cspell:disable-line
       "custom-rules/max-style-name-words": ["error", { maxWords: 4 }],
     },
     settings: {
