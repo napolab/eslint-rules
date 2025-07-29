@@ -7,7 +7,7 @@ export default defineConfig({
   clean: true,
   sourcemap: true,
   minify: false,
-  external: ["eslint"],
+  external: ["eslint", "typescript"],
   platform: "node",
   target: "es2022",
 });
