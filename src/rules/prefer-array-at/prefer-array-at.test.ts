@@ -1,4 +1,5 @@
 import { RuleTester } from "eslint";
+import * as typescriptEslint from "typescript-eslint";
 import { describe, it } from "vitest";
 
 import { rule } from "./index";
@@ -8,6 +9,18 @@ const ruleTester = new RuleTester({
     parserOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
+    },
+  },
+});
+
+const ruleTesterTS = new RuleTester({
+  languageOptions: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    parser: typescriptEslint.parser as any,
+    parserOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      project: "./tsconfig.json",
     },
   },
 });
@@ -165,5 +178,159 @@ describe("prefer-array-at", () => {
         },
       ],
     });
+  });
+
+  it("should use TypeScript type information to distinguish arrays from objects", () => {
+    expect(() => {
+      ruleTesterTS.run("prefer-array-at with TypeScript", rule, {
+        valid: [
+          // Valid: Object with numeric key (should NOT be flagged)
+          {
+            code: `
+            interface User {
+              [id: number]: string;
+            }
+            const user: User = { 0: "John", 1: "Jane" };
+            const name = user[0];
+          `,
+            filename: "test.ts",
+          },
+          {
+            code: `
+            const obj: Record<number, string> = { 0: "value" };
+            const value = obj[0];
+          `,
+            filename: "test.ts",
+          },
+          {
+            code: `
+            type Config = { [key: number]: string };
+            const config: Config = {};
+            const item = config[1];
+          `,
+            filename: "test.ts",
+          },
+          // Valid: String key access should remain valid
+          {
+            code: `
+            const obj: Record<string, number> = { key: 1 };
+            const value = obj["key"];
+          `,
+            filename: "test.ts",
+          },
+          // Valid: Using .at() method on arrays
+          {
+            code: `
+            const arr: number[] = [1, 2, 3];
+            const first = arr.at(0);
+          `,
+            filename: "test.ts",
+          },
+        ],
+        invalid: [
+          // Invalid: Array access should be flagged
+          {
+            code: `
+            const arr: number[] = [1, 2, 3];
+            const item = arr[0];
+          `,
+            filename: "test.ts",
+            errors: [
+              {
+                message: "Use .at(0) instead of [0] for array access",
+              },
+            ],
+            output: `
+            const arr: number[] = [1, 2, 3];
+            const item = arr.at(0);
+          `,
+          },
+          {
+            code: `
+            const strings: string[] = ["a", "b", "c"];
+            const last = strings[-1];
+          `,
+            filename: "test.ts",
+            errors: [
+              {
+                message: "Use .at(-1) instead of [-1] for array access",
+              },
+            ],
+            output: `
+            const strings: string[] = ["a", "b", "c"];
+            const last = strings.at(-1);
+          `,
+          },
+          // Invalid: Array-like types
+          {
+            code: `
+            const arr: Array<string> = ["a", "b"];
+            const item = arr[index];
+          `,
+            filename: "test.ts",
+            errors: [
+              {
+                message: "Use .at({{expression}}) instead of [{{expression}}] for array access",
+              },
+            ],
+            output: `
+            const arr: Array<string> = ["a", "b"];
+            const item = arr.at(index);
+          `,
+          },
+          // Invalid: ReadonlyArray
+          {
+            code: `
+            const arr: ReadonlyArray<number> = [1, 2, 3];
+            const item = arr[0];
+          `,
+            filename: "test.ts",
+            errors: [
+              {
+                message: "Use .at(0) instead of [0] for array access",
+              },
+            ],
+            output: `
+            const arr: ReadonlyArray<number> = [1, 2, 3];
+            const item = arr.at(0);
+          `,
+          },
+          // Invalid: Tuple types
+          {
+            code: `
+            const tuple: [string, number] = ["hello", 42];
+            const first = tuple[0];
+          `,
+            filename: "test.ts",
+            errors: [
+              {
+                message: "Use .at(0) instead of [0] for array access",
+              },
+            ],
+            output: `
+            const tuple: [string, number] = ["hello", 42];
+            const first = tuple.at(0);
+          `,
+          },
+          // Invalid: Array methods that return arrays
+          {
+            code: `
+            const arr = [1, 2, 3].filter(x => x > 1);
+            const item = arr[0];
+          `,
+            filename: "test.ts",
+            errors: [
+              {
+                message: "Use .at(0) instead of [0] for array access",
+              },
+            ],
+            output: `
+            const arr = [1, 2, 3].filter(x => x > 1);
+            const item = arr.at(0);
+          `,
+          },
+        ],
+      });
+    }).not.toThrow();
   });
 });
